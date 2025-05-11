@@ -31,11 +31,11 @@ router.post("/register", async (req, res) => {
     // check if user already exists
     const existingUsername = await User.findOne({ username });
     if (existingUsername) {
-      return res.status(400).json({ message: "Email already exists" });
+      return res.status(400).json({ message: "Username already exists" });
     }
     const existingEmail = await User.findOne({ email });
     if (existingEmail) {
-      return res.status(400).json({ message: "Username already exists" });
+      return res.status(400).json({ message: "Email already exists" });
     }
 
     // get random avatar
@@ -63,7 +63,7 @@ router.post("/register", async (req, res) => {
     });
   } catch (error) {
     console.log("Error in register route", error);
-    res.send(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
